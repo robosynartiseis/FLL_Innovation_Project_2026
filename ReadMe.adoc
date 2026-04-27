@@ -253,7 +253,22 @@ It transforms excavation from:
 
 ---
 
-## 👥 Team
+## 👥 Team Robo+ART(ήσεις)
 
 FIRST LEGO League Team  
 Innovation Project 2026 – UNEARTHED™
+
+---
+
+## ⚡ TL;DR
+
+KALYPSO is a smart archaeological shelter system that transforms a simple excavation tent into an autonomous IoT platform.
+
+It:
+- Protects archaeologists from harsh environmental conditions  
+- Uses sensors and AI to monitor the excavation in real time  
+- Collects and shares data through the cloud  
+- Supports better and faster scientific decision-making  
+
+KALYPSO is not just a shelter —  
+it is a **connected, intelligent excavation system**.
