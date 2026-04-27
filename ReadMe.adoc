@@ -1,58 +1,201 @@
-:Author: robosynartisis
-:Email:
-:Date: 25/03/2026
-:Revision: version#
-:License: Public Domain
+# KALYPSO – Smart Archaeological Shelter System  
+### From Data to Decision. From Concept to Reality.
 
-= Project: {Project}
+---
 
-Describe your project
+## 🧠 Project Overview
 
-== Step 1: Installation
-Please describe the steps to install this project.
+KALYPSO is a smart, autonomous archaeological shelter system designed to improve the safety, efficiency, and data collection process during excavations.
 
-For example:
+In the FIRST LEGO League UNEARTHED™ challenge, we identified that archaeologists:
+- Work in harsh environmental conditions (heat, humidity, rain)
+- Lack integrated systems for real-time data collection
+- Still rely on manual documentation processes
 
-1. Open this file
-2. Edit as you like
-3. Release to the World!
+KALYPSO transforms a simple excavation tent into an **intelligent, connected IoT system** that:
+- Protects archaeologists
+- Collects environmental and excavation data
+- Supports real-time decision making
 
-== Step 2: Assemble the circuit
+---
 
-Assemble the circuit following the diagram layout.png attached to the sketch
+## ⚙️ System Architecture
 
-== Step 3: Load the code
+KALYPSO follows a **Sense → Analyze → Decide → Act** pipeline:
 
-Upload the code contained in this sketch on to your board
+### 🔹 Sense
+- Light sensors (LDR)
+- Temperature & Humidity (DHT20)
+- Rain sensor
+- IMU (movement/orientation)
+- GPS module
+- AI Camera (HuskyLens)
 
-=== Folder structure
+### 🔹 Analyze
+- Arduino GIGA WiFi processes data
+- AI camera detects findings
+- Environmental monitoring logic
 
-....
- sketch123                => Arduino sketch folder
-  ├── sketch123.ino       => main Arduino file
-  ├── schematics.png      => (optional) an image of the required schematics
-  ├── layout.png          => (optional) an image of the layout
-  └── ReadMe.adoc         => this file
-....
+### 🔹 Decide
+- Autonomous decisions based on:
+  - Sun direction
+  - Weather conditions
+  - Detected findings
 
-=== License
-This project is released under a {License} License.
+### 🔹 Act
+- Servo motors adjust solar panel
+- Curtain system activates for protection
+- Cooling fan system
+- Notifications sent via IoT Cloud
 
-=== Contributing
-To contribute to this project please contact: 
+---
 
-=== BOM
-Add the bill of the materials you need for this project.
+## 🔌 Hardware Components
 
-|===
-| ID | Part name      | Part number | Quantity
-| R1 | 10k Resistor   | 1234-abcd   | 10       
-| L1 | Red LED        | 2345-asdf   | 5        
-| A1 | Arduino Zero   | ABX00066    | 1        
-|===
+- **Microcontroller:** Arduino GIGA WiFi  
+- **AI Vision:** HuskyLens AI Camera  
+- **Sensors:**
+  - LDR (light tracking)
+  - DHT20 (temperature & humidity)
+  - Raindrop sensor
+  - IMU sensor
+  - GPS module  
+- **Actuators:**
+  - Servo motors (solar tracking)
+  - DC motors (curtain system)
+  - Cooling fan  
+- **Display:** LCD screen  
+- **Connectivity:** WiFi + IoT Cloud  
 
+---
 
-=== Help
-This document is written in the _AsciiDoc_ format, a markup language to describe documents. 
-If you need help you can search the http://www.methods.co.nz/asciidoc[AsciiDoc homepage]
-or consult the http://powerman.name/doc/asciidoc[AsciiDoc cheatsheet]
+## 💻 Software Structure
+
+The system is modular and organized into multiple `.ino` files:
+
+### 🔹 `sensors.ino`
+Handles all environmental data:
+- Reads temperature, humidity, light, rain
+- Collects GPS and IMU data
+
+### 🔹 `ai.ino`
+- Controls HuskyLens AI camera
+- Detects archaeological findings
+- Processes object recognition data
+
+### 🔹 `actuators.ino`
+- Controls motors and servos
+- Activates curtain system
+- Manages cooling and movement
+
+### 🔹 `servo.ino`
+- Handles solar panel tracking
+- Adjusts angle based on light sensors
+
+### 🔹 `cloud.ino`
+- IoT communication
+- Sends real-time data to cloud
+- Handles notifications (push alerts)
+
+### 🔹 `lcd.ino`
+- Displays system status
+- Shows environmental data
+
+### 🔹 `helpers.ino`
+- Utility functions
+- Shared logic across modules
+
+### 🔹 `simulation.ino` / `simulation.h`
+- Testing environment
+- Simulates system behavior
+
+### 🔹 `thingProperties.h`
+- IoT Cloud configuration
+
+---
+
+## ☁️ IoT & Connectivity
+
+KALYPSO uses IoT Cloud to:
+- Send real-time environmental data
+- Notify archaeologists when:
+  - Findings are detected
+  - Weather conditions change
+  - System is activated/deactivated
+- Connect multiple tents into one network
+
+➡️ This allows multiple KALYPSO units to act as a **connected excavation system**
+
+---
+
+## 🤖 Key Features
+
+- ☀️ Autonomous sun tracking  
+- 🌧️ Weather protection system  
+- 📡 Real-time cloud monitoring  
+- 🧠 AI-powered object detection  
+- 🔗 Multi-tent IoT network  
+- 🔋 Solar-powered operation  
+- 📲 Push notifications to archaeologists  
+
+---
+
+## 🚀 Innovation
+
+KALYPSO is not just a shelter.
+
+It introduces a **new excavation approach** by:
+- Turning passive equipment into active systems
+- Integrating AI + IoT in archaeology
+- Enabling real-time data-driven decisions
+- Creating a **networked excavation environment**
+
+---
+
+## 🌍 Real-World Impact
+
+KALYPSO can:
+- Improve archaeologists' working conditions
+- Increase excavation efficiency
+- Reduce human error in documentation
+- Enable remote monitoring of excavation sites
+
+---
+
+## 🔁 Scalability
+
+Multiple KALYPSO units can connect and operate as:
+
+> 🧠 “A neural excavation network”
+
+- Shared data across excavation grid
+- Centralized monitoring
+- Better scientific decision-making
+
+---
+
+## 🛠️ Setup Instructions
+
+1. Upload code to Arduino GIGA WiFi  
+2. Connect sensors and actuators as per schematic  
+3. Configure IoT Cloud (thingProperties.h)  
+4. Power system (external + solar)  
+5. Start monitoring via cloud dashboard  
+
+---
+
+## 🏁 Conclusion
+
+KALYPSO bridges the gap between archaeology and modern technology.
+
+It transforms excavation from:
+> Manual & isolated  
+➡️ into  
+> Intelligent, connected, and data-driven
+
+---
+
+## 👥 Team
+
+FIRST LEGO League Team  
+Innovation Project 2026 – UNEARTHED™
