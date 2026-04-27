@@ -264,12 +264,11 @@ Innovation Project 2026 – UNEARTHED™
 
 KALYPSO is a smart archaeological shelter system that transforms a simple excavation tent into an autonomous IoT platform.
 
-It:
+**It includes:**
+
 - Protects archaeologists from harsh environmental conditions  
 - Uses sensors and AI to monitor the excavation in real time  
 - Collects and shares data through the cloud  
 - Supports faster and more accurate scientific decision-making  
 
-
-KALYPSO is not just a shelter —  
-it is a **connected, intelligent excavation system**.
+KALYPSO is not just a shelter — it is a **connected, intelligent excavation system**.
