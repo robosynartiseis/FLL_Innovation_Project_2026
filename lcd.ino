@@ -185,7 +185,7 @@ void displayIntro() {
   displayLineCentered(0, "Robo+art(iseis)");
 
   // Διαγωνισμός
-  displayLineCentered(1, "FLL UNEARTHED 2025");
+  displayLineCentered(1, "FLL UNEARTHED 2026");
 
   // Όνομα ρομπότ
   displayLineCentered(2, "KALIPSO");
