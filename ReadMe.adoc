@@ -69,38 +69,43 @@ KALYPSO follows a **Sense → Analyze → Decide → Act** pipeline:
 
 ---
 
-## 🔌 Wiring & Connections (Simplified Schematic)
+== 🔌 Wiring & Connections (Simplified Schematic)
 
 The system is built around the Arduino GIGA WiFi, which connects to all sensors, actuators, and modules.
 
-### 🔹 Sensors
+=== Sensors
 
-| Component        | Connection Type | Arduino Pins |
-|------------------|----------------|-------------|
-| LDR Sensors      | Analog Input   | A0, A1      |
-| DHT20            | I2C            | SDA / SCL   |
-| Rain Sensor      | Digital Input  | D2          |
-| IMU Sensor       | I2C            | SDA / SCL   |
-| GPS Module       | UART           | RX / TX     |
-| HuskyLens (AI)   | I2C / UART     | SDA / SCL or Serial |
+[cols="1,1,1", options="header"]
+|===
+| Component | Connection Type | Arduino Pins
 
----
+| LDR Sensors | Analog Input | A0, A1
+| DHT20 | I2C | SDA / SCL
+| Rain Sensor | Digital Input | D2
+| IMU Sensor | I2C | SDA / SCL
+| GPS Module | UART | RX / TX
+| HuskyLens (AI) | I2C / UART | SDA / SCL or Serial
+|===
 
-### 🔹 Actuators
+=== Actuators
 
-| Component        | Connection Type | Arduino Pins |
-|------------------|----------------|-------------|
-| Servo Motors     | PWM            | D5, D6      |
-| Curtain Motor    | Digital Output | D7, D8      |
-| Cooling Fan      | Digital Output | D9          |
+[cols="1,1,1", options="header"]
+|===
+| Component | Connection Type | Arduino Pins
 
----
+| Servo Motors | PWM | D5, D6
+| Curtain Motor | Digital Output | D7, D8
+| Cooling Fan | Digital Output | D9
+|===
 
-### 🔹 Display
+=== Display
 
-| Component | Connection |
-|----------|-----------|
-| LCD      | I2C (SDA / SCL) |
+[cols="1,1", options="header"]
+|===
+| Component | Connection
+
+| LCD | I2C (SDA / SCL)
+|===
 
 ---
 
