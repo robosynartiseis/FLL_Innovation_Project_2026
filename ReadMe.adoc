@@ -270,5 +270,6 @@ It:
 - Collects and shares data through the cloud  
 - Supports faster and more accurate scientific decision-making  
 
+
 KALYPSO is not just a shelter —  
 it is a **connected, intelligent excavation system**.
