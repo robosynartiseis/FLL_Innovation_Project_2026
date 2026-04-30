@@ -13,6 +13,8 @@ void onCloudFanStateChange();
 void onCloudForwardChange();
 void onCloudLeftChange();
 void onCloudLightStateChange();
+void onCloudManualCurtainsChange();
+void onCloudManualDriveChange();
 void onCloudManualFanChange();
 void onCloudManualLightChange();
 void onCloudOpenCurtainsChange();
@@ -23,6 +25,7 @@ void onCloudOpenRightCurtainsChange();
 void onCloudRightChange();
 
 String cloudLocation;
+String cloudMapsLink;
 String cloudUptime;
 float cloudAltitude;
 float cloudHumidity;
@@ -50,6 +53,8 @@ bool cloudFanState;
 bool cloudForward;
 bool cloudLeft;
 bool cloudLightState;
+bool cloudManualCurtains;
+bool cloudManualDrive;
 bool cloudManualFan;
 bool cloudManualLight;
 bool cloudOpenCurtains;
@@ -74,6 +79,7 @@ void initProperties(){
   ArduinoCloud.setConfigurator(NetworkConfigurator);
 
   ArduinoCloud.addProperty(cloudLocation, READ, ON_CHANGE, NULL);
+  ArduinoCloud.addProperty(cloudMapsLink, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(cloudUptime, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(cloudAltitude, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(cloudHumidity, READ, ON_CHANGE, NULL);
@@ -101,6 +107,8 @@ void initProperties(){
   ArduinoCloud.addProperty(cloudForward, READWRITE, ON_CHANGE, onCloudForwardChange);
   ArduinoCloud.addProperty(cloudLeft, READWRITE, ON_CHANGE, onCloudLeftChange);
   ArduinoCloud.addProperty(cloudLightState, READWRITE, ON_CHANGE, onCloudLightStateChange);
+  ArduinoCloud.addProperty(cloudManualCurtains, READWRITE, ON_CHANGE, onCloudManualCurtainsChange);
+  ArduinoCloud.addProperty(cloudManualDrive, READWRITE, ON_CHANGE, onCloudManualDriveChange);
   ArduinoCloud.addProperty(cloudManualFan, READWRITE, ON_CHANGE, onCloudManualFanChange);
   ArduinoCloud.addProperty(cloudManualLight, READWRITE, ON_CHANGE, onCloudManualLightChange);
   ArduinoCloud.addProperty(cloudOpenCurtains, READWRITE, ON_CHANGE, onCloudOpenCurtainsChange);

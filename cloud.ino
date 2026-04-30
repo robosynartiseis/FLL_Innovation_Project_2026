@@ -295,86 +295,91 @@ void controlCloudMovement() {
   static MovementDirection lastDirection = DIR_STOP;
   MovementDirection currentDirection = DIR_STOP;
 
-  // ================= DETECT COMMAND =================
-  // Προτεραιότητα εντολών (μόνο μία κάθε φορά)
-  if (cloudForward) {
-    currentDirection = DIR_FORWARD;
-  }
-  else if (cloudBackward) {
-    currentDirection = DIR_BACKWARD;
-  }
-  else if (cloudRight) {
-    currentDirection = DIR_RIGHT;
-  }
-  else if (cloudLeft) {
-    currentDirection = DIR_LEFT;
-  }
-  else {
-    currentDirection = DIR_STOP;
-  }
+  // ================= MANUAL MODE =================
+  // Εκτελείται μόνο όταν είναι ενεργό το manual mode
+  if (cloudManualDrive) {
 
-  // ================= EXECUTE MOVEMENT =================
-  // Continuous (momentary) control
-  switch (currentDirection) {
-
-    case DIR_FORWARD:
-      moveForward();
-      break;
-
-    case DIR_BACKWARD:
-      moveBackward();
-      break;
-
-    case DIR_RIGHT:
-      turnRight();
-      break;
-
-    case DIR_LEFT:
-      turnLeft();
-      break;
-
-    case DIR_STOP:
-    default:
-      stopMotors();
-      break;
-  }
-
-  // ================= MESSAGE ON CHANGE =================
-  // Εμφάνιση μηνύματος μόνο όταν αλλάζει η κατεύθυνση
-  if (currentDirection != lastDirection) {
-
-    // Μήνυμα στην LCD
-    lcd.clear();
-    displayLine(0, "====================");
-    displayLineCentered(1, "Manual Drive");
-
+    // ================= DETECT COMMAND =================
+    // Προτεραιότητα εντολών (μόνο μία κάθε φορά)
+    if (cloudForward) {
+      currentDirection = DIR_FORWARD;
+    }
+    else if (cloudBackward) {
+      currentDirection = DIR_BACKWARD;
+    }
+    else if (cloudRight) {
+      currentDirection = DIR_RIGHT;
+    }
+    else if (cloudLeft) {
+      currentDirection = DIR_LEFT;
+    }
+    else {
+      currentDirection = DIR_STOP;
+    }
+  
+    // ================= EXECUTE MOVEMENT =================
+    // Continuous (momentary) control
     switch (currentDirection) {
-      case 1:
-        displayLineCentered(2, "Moving Forward");
+  
+      case DIR_FORWARD:
+        moveForward();
         break;
-      case 2:
-        displayLineCentered(2, "Moving Backward");
+  
+      case DIR_BACKWARD:
+        moveBackward();
         break;
-      case 3:
-        displayLineCentered(2, "Turning Right");
+  
+      case DIR_RIGHT:
+        turnRight();
         break;
-      case 4:
-        displayLineCentered(2, "Turning Left");
+  
+      case DIR_LEFT:
+        turnLeft();
         break;
+  
+      case DIR_STOP:
       default:
-        displayLineCentered(2, "Stopped");
+        stopMotors();
         break;
     }
-
-    displayLine(3, "====================");
-
-    // Ενεργοποίηση message timer
-    modeMessageActive = true;
-    modeMessageStartTime = myTime;
+  
+    // ================= MESSAGE ON CHANGE =================
+    // Εμφάνιση μηνύματος μόνο όταν αλλάζει η κατεύθυνση
+    if (currentDirection != lastDirection) {
+  
+      // Μήνυμα στην LCD
+      lcd.clear();
+      displayLine(0, "====================");
+      displayLineCentered(1, "Manual Drive");
+  
+      switch (currentDirection) {
+        case 1:
+          displayLineCentered(2, "Moving Forward");
+          break;
+        case 2:
+          displayLineCentered(2, "Moving Backward");
+          break;
+        case 3:
+          displayLineCentered(2, "Turning Right");
+          break;
+        case 4:
+          displayLineCentered(2, "Turning Left");
+          break;
+        default:
+          displayLineCentered(2, "Stopped");
+          break;
+      }
+  
+      displayLine(3, "====================");
+  
+      // Ενεργοποίηση message timer
+      modeMessageActive = true;
+      modeMessageStartTime = myTime;
+    }
+  
+    // ================= UPDATE STATE =================
+    lastDirection = currentDirection;
   }
-
-  // ================= UPDATE STATE =================
-  lastDirection = currentDirection;
 }
 
 // =================================================
@@ -625,62 +630,67 @@ void controlCloudCurtains() {
   static bool lastOpenState = false;
   static bool lastCloseState = false;
 
-  // ================= GLOBAL OPEN =================
-  // Όσο το κουμπί είναι πατημένο → ανοίγουν
-  if (cloudOpenCurtains) {
+  // ================= MANUAL MODE =================
+  // Εκτελείται μόνο όταν είναι ενεργό το manual mode
+  if (cloudManualCurtains) {
 
-    openCurtains();
-
-    // ================= MESSAGE ON START =================
-    // Εμφάνιση μηνύματος ΜΟΝΟ όταν ξεκινά η κίνηση
-    if (!lastOpenState) {
-
-      // Μήνυμα στην LCD
-      lcd.clear();
-      displayLine(0, "====================");
-      displayLineCentered(1, "Manual Mode");
-      displayLineCentered(2, "Curtains Opening");
-      displayLine(3, "====================");
-
-      // Ενεργοποίηση message timer
-      modeMessageActive = true;
-      modeMessageStartTime = myTime;
+    // ================= GLOBAL OPEN =================
+    // Όσο το κουμπί είναι πατημένο → ανοίγουν
+    if (cloudOpenCurtains) {
+  
+      openCurtains();
+  
+      // ================= MESSAGE ON START =================
+      // Εμφάνιση μηνύματος ΜΟΝΟ όταν ξεκινά η κίνηση
+      if (!lastOpenState) {
+  
+        // Μήνυμα στην LCD
+        lcd.clear();
+        displayLine(0, "====================");
+        displayLineCentered(1, "Manual Mode");
+        displayLineCentered(2, "Curtains Opening");
+        displayLine(3, "====================");
+  
+        // Ενεργοποίηση message timer
+        modeMessageActive = true;
+        modeMessageStartTime = myTime;
+      }
     }
-  }
-
-  // ================= GLOBAL CLOSE =================
-  // Όσο το κουμπί είναι πατημένο → κλείνουν
-  else if (cloudCloseCurtains) {
-
-    closeCurtains();
-
-    // ================= MESSAGE ON START =================
-    if (!lastCloseState) {
-
-      // Μήνυμα στην LCD
-      lcd.clear();
-      displayLine(0, "====================");
-      displayLineCentered(1, "Manual Mode");
-      displayLineCentered(2, "Curtains Closing");
-      displayLine(3, "====================");
-
-      // Ενεργοποίηση message timer
-      modeMessageActive = true;
-      modeMessageStartTime = myTime;
+  
+    // ================= GLOBAL CLOSE =================
+    // Όσο το κουμπί είναι πατημένο → κλείνουν
+    else if (cloudCloseCurtains) {
+  
+      closeCurtains();
+  
+      // ================= MESSAGE ON START =================
+      if (!lastCloseState) {
+  
+        // Μήνυμα στην LCD
+        lcd.clear();
+        displayLine(0, "====================");
+        displayLineCentered(1, "Manual Mode");
+        displayLineCentered(2, "Curtains Closing");
+        displayLine(3, "====================");
+  
+        // Ενεργοποίηση message timer
+        modeMessageActive = true;
+        modeMessageStartTime = myTime;
+      }
     }
+  
+    // ================= INDIVIDUAL CONTROL =================
+    // Έλεγχος κάθε κουρτίνας ξεχωριστά
+    else {
+  
+      controlCloudCurtainsIndividual();
+    }
+  
+    // ================= UPDATE STATES =================
+    // Αποθήκευση καταστάσεων για το επόμενο loop
+    lastOpenState = cloudOpenCurtains;
+    lastCloseState = cloudCloseCurtains;
   }
-
-  // ================= INDIVIDUAL CONTROL =================
-  // Έλεγχος κάθε κουρτίνας ξεχωριστά
-  else {
-
-    controlCloudCurtainsIndividual();
-  }
-
-  // ================= UPDATE STATES =================
-  // Αποθήκευση καταστάσεων για το επόμενο loop
-  lastOpenState = cloudOpenCurtains;
-  lastCloseState = cloudCloseCurtains;
 }
 
 // =================================================
@@ -859,18 +869,27 @@ void readCloudSwitch() {
   // Αν ο διακόπτης είναι LOW → Cloud ενεργό
   if (!currentSwitchState) {
     displayLineCentered(1, "Cloud Mode ON");
+    
+    // Θέτουμε κατάσταση CONNECTING
+    cloudState = CLOUD_CONNECTING;
+    
+    // Ενημέρωση flag λειτουργίας
+    offlineMode = false;
   } 
   
   // ================= OFFLINE MODE =================
   // Αν ο διακόπτης είναι HIGH → Offline mode
   else {
     displayLineCentered(1, "Cloud Mode OFF");
+    
+    // Θέτουμε κατάσταση CLOUD MANUAL OFFLINE
+    cloudState = CLOUD_MANUAL_OFFLINE;
+    
+    // Ενημέρωση flag λειτουργίας
+    offlineMode = true;
   }
 
   // Γραμμές διακόσμησης
   displayLine(2, "                    ");
   displayLine(3, "====================");
-
-  // Ενημέρωση flag λειτουργίας
-  offlineMode = currentSwitchState;
 }

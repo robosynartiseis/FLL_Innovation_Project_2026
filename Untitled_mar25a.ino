@@ -7,6 +7,7 @@
   The following variables are automatically generated and updated when changes are made to the Thing
 
   String cloudLocation;
+  String cloudMapsLink;
   String cloudUptime;
   float cloudAltitude;
   float cloudHumidity;
@@ -34,6 +35,8 @@
   bool cloudForward;
   bool cloudLeft;
   bool cloudLightState;
+  bool cloudManualCurtains;
+  bool cloudManualDrive;
   bool cloudManualFan;
   bool cloudManualLight;
   bool cloudOpenCurtains;
@@ -775,13 +778,16 @@ void setup() {
   // Έλεγχος διακόπτη ενεργοποίησης cloud
   readCloudSwitch();
   delay(modeMessageStartInterval);
+
+  // Αν επιτρέπεται η χρήση Cloud
+  if(!offlineMode) {
+    // Αρχικοποίηση cloud μεταβλητών
+    initProperties();
+
+    // Αρχικοποίηση cloud
+    initCloud();
+  }
   
-  // Αρχικοποίηση cloud μεταβλητών
-  initProperties();
-
-  // Αρχικοποίηση cloud
-  initCloud();
-
   // Update LED με βάση κατάσταση
   updateCloudStatusLEDs();
   
@@ -1075,3 +1081,20 @@ void onCloudManualFanChange()  {
   // Add your code here to act upon CloudManualFan change
 }
 
+
+
+/*
+  Since CloudManualDrive is READ_WRITE variable, onCloudManualDriveChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onCloudManualDriveChange()  {
+  // Add your code here to act upon CloudManualDrive change
+}
+
+/*
+  Since CloudManualCurtains is READ_WRITE variable, onCloudManualCurtainsChange() is
+  executed every time a new value is received from IoT Cloud.
+*/
+void onCloudManualCurtainsChange()  {
+  // Add your code here to act upon CloudManualCurtains change
+}
