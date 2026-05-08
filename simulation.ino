@@ -276,11 +276,42 @@ void updateFakeGNSS() {
 
 // -------- BASE VALUES --------
 // Βασικές τιμές (αλλάζονται στον διαγωνισμό)
-float baseTemperature = 16.5;
-float baseHumidity = 65.0;
-float basePressure = 1012.0;
-float baseAltitude = 25.0;
-int baseRain = 20;
-int baseLight = 60;
-float baseLat = 36.4340;
-float baseLon = 28.2170;
+// float baseTemperature = 16.5;
+// float baseHumidity = 65.0;
+// float basePressure = 1012.0;
+// float baseAltitude = 25.0;
+// int baseRain = 20;
+// int baseLight = 60;
+// float baseLat = 36.4340;
+// float baseLon = 28.2170;
+
+// =================================================
+// SENSOR BASE VALUES
+// Competition Location:
+// The Ranch - Sofiko Korinthias
+// Saturday 9 May
+// =================================================
+
+// -------- BASE VALUES --------
+
+// Θερμοκρασία περιβάλλοντος (~22°C)
+float baseTemperature = 22.4;
+
+// Σχετική υγρασία (~62%)
+float baseHumidity = 62.0;
+
+// Βαρομετρική πίεση (τυπική για την περιοχή)
+float basePressure = 1013.6;
+
+// Υψόμετρο περιοχής (~270m)
+float baseAltitude = 270.0;
+
+// Μικρή πιθανότητα βροχής
+int baseRain = 8;
+
+// Υψηλή ηλιοφάνεια (ημέρα)
+int baseLight = 82;
+
+// GNSS Coordinates - The Ranch
+float baseLat = 37.8025;
+float baseLon = 23.0530;
